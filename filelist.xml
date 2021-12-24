@@ -1,0 +1,4 @@
+<contentpackage name="Fnata, Pneumatic Goodness" path="Mods/Fnata/filelist.xml" gameversion="0.15.13.0" corepackage="false">
+    <Item file="Mods/Fnata/Medical/medical_items.xml"/>
+    <Afflictions file="Mods/Fnata/Medical/medical_afflictions.xml" />
+</contentpackage>

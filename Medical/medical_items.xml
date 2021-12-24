@@ -1,0 +1,96 @@
+<Items>
+    <Item
+        name="Fnata"
+        identifier="fnata_medical_fnata"
+        category="material"
+        maxstacksize="8"
+        cargocontaineridentifier="mediccrate"
+        Tags="smallitem,chem,medical,syringe"
+        description="A mild regeneration booster injected directly into the blood veins. It causes very short term oxygen deprevation. Powered by small exploding nitrogen canister."
+        useinhealthinterface="true"
+        scale="0.15"
+        impactsoundtag="impact_metal_light"
+        RequireAimToUse="True">
+        <PreferredContainer primary="medcab"
+            minamount="0" maxamount="4"
+            spawnprobability="0.05"/>
+        <PreferredContainer primary="supplycab"
+            minamount="0" maxamount="2"
+            spawnprobability="0.01"/>
+        <PreferredContainer primary="wreckmedcab,abandonedmedcab"
+            minamount="0" maxamount="2"
+            spawnprobability="0.04"/>
+        <Price baseprice="128">
+            <Price locationtype="outpost" multiplier="1" sold="false"/>
+            <Price locationtype="city" multiplier="1" sold="false"/>
+            <Price locationtype="research" multiplier="1" minavailable="6"/>
+            <Price locationtype="military" multiplier="1.6" minavailable="4"/>
+            <Price locationtype="mine" multiplier="1" sold="false"/>
+        </Price>
+        <SuitableTreatment type="damage" suitability="50"/>
+        <SuitableTreatment identifier="fnatawithdrawal" suitability="5"/>
+        <SuitableTreatment identifier="oxygenlow" suitability="-30"/>
+        <SuitableTreatment identifier="fnataoverdose" suitability="-30"/>
+        <Fabricate suitablefabricator="medicalfabricator" requiredtime="30" amount="4">
+            <RequiredSkill identifier="medical" level="40"/>
+            <RequiredItem identifier="pomegrenadeextract"/>
+            <RequiredItem identifier="pomegrenadeextract"/>
+            <RequiredItem identifier="antibloodloss1"/>
+        </Fabricate>
+        <Deconstruct time="30">
+            <Item identifier="pomegrenadeextract" copycondition="true" mincondition="0.1"/>
+            <Item identifier="pomegrenadeextract" copycondition="true" mincondition="0.1"/>
+        </Deconstruct>
+        <InventoryIcon texture="Mods/Fnata/Medical/medical_items.png"
+            sourcerect="0,0,256,256" origin="0.5,0.5"/>
+        <Sprite texture="Mods/Fnata/Medical/medical_items.png"
+            sourcerect="256,0,256,256" depth="0.6" origin="0.5,0.5"/>
+        <Body width="64" height="128" density="20"/>
+        <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect">
+            <RequiredSkill identifier="medical" level="25" />
+            <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
+            <StatusEffect type="OnUse" target="UseTarget">
+                <ParticleEmitter particle="explosionsmoke" particleamount="1" velocitymin="0" velocitymax="0" scalemin="0.3" scalemax="0.4" />
+            </StatusEffect>
+            <StatusEffect type="OnFailure" target="This" Condition="-100.0" disabledeltatime="true" />
+            <StatusEffect tags="medical" type="OnUse" target="Character" disabledeltatime="true">
+                <Conditional fnatadependency="lt 40.0" />
+                <Sound file="Content/Items/Weapons/GrenadeLauncherShot3.ogg" type="OnUse" range="1000" />
+                <Affliction identifier="fnataoverdose" amount="30" />
+                <Affliction identifier="oxygenlow" amount="30" />
+                <Affliction identifier="fnatainfusion" amount="100" />
+            </StatusEffect>
+            <StatusEffect tags="medical" type="OnUse" target="Character" disabledeltatime="true">
+                <Conditional fnatadependency="gt 40.0" />
+                <Sound file="Content/Items/Weapons/GrenadeLauncherShot3.ogg" type="OnUse" range="1000" />
+                <Affliction identifier="fnataoverdose" amount="50" />
+                <Affliction identifier="oxygenlow" amount="30" />
+                <Affliction identifier="fnatainfusion" amount="200" />
+                <Affliction identifier="fnatadependency" amount="10" />
+            </StatusEffect>
+            <StatusEffect tags="medical" type="OnFailure" target="Character" disabledeltatime="true">
+                <Sound file="Content/Items/Weapons/GrenadeLauncherShot3.ogg" type="OnUse" range="1000" />
+                <Affliction identifier="oxygenlow" amount="75" />
+            </StatusEffect>
+            <StatusEffect tags="medical" type="OnFailure" target="Limb, This" disabledeltatime="true">
+                <Affliction identifier="fnatamyositis" amount="100" />
+            </StatusEffect>
+            <!-- Remove the item when fully used -->
+            <StatusEffect type="OnBroken" target="This">
+                <Remove />
+            </StatusEffect>
+        </MeleeWeapon>
+        <Projectile characterusable="false" launchimpulse="20.0" sticktocharacters="true" launchrotation="-90">
+            <StatusEffect type="OnImpact" target="This" Condition="-100.0" disabledeltatime="true" />
+            <StatusEffect type="OnImpact" target="UseTarget">
+                <ParticleEmitter particle="explosionsmoke" particleamount="1" velocitymin="0" velocitymax="0" scalemin="0.3" scalemax="0.4" />
+            </StatusEffect>
+            <StatusEffect tags="medical" type="OnImpact" target="Character" disabledeltatime="true">
+                <Sound file="Content/Items/Weapons/GrenadeLauncherShot3.ogg" type="OnUse" range="1000" />
+                <Affliction identifier="fnataoverdose" amount="30" />
+                <Affliction identifier="oxygenlow" amount="50" />
+                <Affliction identifier="fnatainfusion" amount="100" />
+            </StatusEffect>
+        </Projectile>
+    </Item>
+</Items>
