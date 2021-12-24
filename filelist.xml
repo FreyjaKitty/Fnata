@@ -1,4 +1,8 @@
-<contentpackage name="Fnata, Pneumatic Goodness" path="Mods/Fnata/filelist.xml" gameversion="0.15.13.0" corepackage="false">
-    <Item file="Mods/Fnata/Medical/medical_items.xml"/>
-    <Afflictions file="Mods/Fnata/Medical/medical_afflictions.xml" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Fnata, Pneumatic Goodness" path="Mods/Fnata/filelist.xml" corepackage="false" gameversion="0.15.13.0">
+  <Item file="Mods/Fnata/Medical/medical_items.xml" />
+  <Afflictions file="Mods/Fnata/Medical/medical_afflictions.xml" />
+  <None file="Mods/Fnata/Medical/medical_items.png" />
+  <Item file="Mods/Fnata/Decorative/decorative_posters.xml" />
+  <None file="Mods/Fnata/Decorative/decorative_posters.png" />
 </contentpackage>

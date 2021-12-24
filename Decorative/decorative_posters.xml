@@ -1,0 +1,26 @@
+<Items>
+  <Item name="Fnata Poster 1" identifier="fnata_decorative_poster_1" tags="poster" pickdistance="150" scale="0.1"
+  description="Advertisement poster of the Fnata pneumatic soft drink! ( Place by pressing aim + use )" HideConditionBar="true" >
+	
+    <Price baseprice="5" >
+      <Price locationtype="outpost" multiplier="1" sold="false"/>
+      <Price locationtype="city" multiplier="1" sold="false" />
+      <Price locationtype="research" multiplier="1" sold="false" />
+      <Price locationtype="military" multiplier="1" sold="false" />
+      <Price locationtype="mine" multiplier="1" sold="false" />
+    </Price>
+	
+    <Deconstruct time="1">
+      <Item identifier="iron" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="fabricator" requiredtime="2">
+      <RequiredItem identifier="iron" />
+    </Fabricate>
+    <Sprite texture="Mods/Fnata/Decorative/decorative_posters.png" depth="0.65" sourcerect="0,0,1024,1600" origin="0.5,0.5" />
+    <Body width="128" height="200" density="25" />
+    <Holdable selectkey="Select" pickkey="Use" slots="RightHand+LeftHand" msg="ItemMsgDetachWrench" PickingTime="10.0" aimpos="65,-10" handle1="0,0" attachable="true" aimable="false">
+      <RequiredItem identifier="wrench" type="Equipped" />
+      <StatusEffect type="OnActive" target="Character" SpeedMultiplier="1.8" setvalue="true" />
+    </Holdable>
+ </Item>
+</Items>
